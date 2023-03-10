@@ -1,5 +1,2 @@
 #!/bin/bash
-while true
-do
-    echo "StarWars IV episode"
-done
+telnet towel.blinkenlights.nl
