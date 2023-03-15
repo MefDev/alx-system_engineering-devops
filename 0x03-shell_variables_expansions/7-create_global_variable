@@ -1,3 +1,2 @@
-p#!/bin/bash
-BEST="School"
-BEST="School"
+#!/bin/bash
+export BEST="School"
