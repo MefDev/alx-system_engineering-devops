@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#display  PID, along with the process name, of processes whose name contain the word bash
+#display infinity loop of inifinity
 infinity="To infinity and beyond"
 while true
 do
