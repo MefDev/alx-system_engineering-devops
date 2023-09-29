@@ -10,7 +10,7 @@
 
 hours=0
 minutes=1
-echo "hour: $hours"
+echo "Hour: $hours"
 while ((hours < 13))
 do
     echo "$minutes"
@@ -21,7 +21,7 @@ do
         ((hours++))
         if ((hours < 13))
         then
-            echo "hour: $hours"
+            echo "Hour: $hours"
         fi
         
     fi
