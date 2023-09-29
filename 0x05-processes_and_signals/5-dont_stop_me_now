@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#strop infinity loop of inifinity
+
+pgrep "bash" | xargs kill
