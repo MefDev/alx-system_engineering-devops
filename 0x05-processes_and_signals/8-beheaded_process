@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#Kill her without any mercy because she've done bad to humanity
+pkill -9 -f "7-highlander"
