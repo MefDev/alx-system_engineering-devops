@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#magic of trap of infinity with the invicible function 0__°
+invicible="I am invincible!!!"
+infinity="To infinity and beyond"
+print_invicible(){
+    echo "$invicible"
+}
+
+trap 'print_invicible' SIGTERM
+while true
+do
+    echo "$infinity"
+    sleep 2
+done
