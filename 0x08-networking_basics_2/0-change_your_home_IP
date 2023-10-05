@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#ICP THEN UDP
 
 current_host="127.0.0.1 localhost"
 current_fb="157.240.11.35 facebook.com"
