@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-#Play with ping
+#Somthing not right?
 
-if [ $# > 1 ]
+if [ $# > 0 ]
 then
-    ping -c 5 $1
+	ping -c 5 "$1"
 else
-    echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
+	echo "Usage: 5-is_the_host_on_the_network {IP_ADDRESS}"
 fi
