@@ -9,5 +9,5 @@ host=/etc/hosts
 new_host=~/hosts.new
 cp $host $new_host
 sudo sed -i  "s/$current_host/$localhost_pair/" $new_host
-sudo sed -i  "s/$current_fb/$facebook_pair/" $new_host
+echo facebook_pair >> $new_host
 cp -f $new_host $host
