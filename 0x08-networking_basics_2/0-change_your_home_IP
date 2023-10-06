@@ -7,6 +7,7 @@ localhost_pair="127.0.0.2 localhost"
 facebook_pair="8.8.8.8 facebook.com"
 host=/etc/hosts
 new_host=~/hosts.new
+cp $host $new_host
 sudo sed -i -e "/$current_host/ s/$localhost_pair/" $new_host
 echo $facebook_pair >> $new_host
 cp -f $new_host $host
