@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Play with ping
 
-if [ $# > 1 ]
+if [ $# > 0 ]
 then
     ping -c 5 $1
 else
