@@ -12,9 +12,10 @@ package { 'nginx':
 }
 
 service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => Package['nginx'],
+  ensure    => running,
+  enable    => true,
+  subscribe => File['default'],
+  require   => Package['nginx'],
 }
 
 file { 'index.html':
