@@ -3,7 +3,7 @@
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 sudo sed -i "9i ENABLED=1" /etc/default/haproxy
-sudo cat >> /etc/haproxy/haproxy.cfg <<EOF
+cat >> /etc/haproxy/haproxy.cfg <<EOF
 
 frontend frontends
     bind *:80
