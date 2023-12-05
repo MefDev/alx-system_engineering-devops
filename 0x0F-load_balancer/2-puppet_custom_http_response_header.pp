@@ -1,8 +1,10 @@
+# Using Puppet, configure two servers
 exec {'apt-update':
   command => '/usr/bin/apt-get update',
   path    => '/usr/bin:/usr/sbin:/bin',
 
 }
+
 package { 'nginx':
   ensure   => installed,
   provider => ['apt'],
@@ -11,7 +13,7 @@ package { 'nginx':
 
 service { 'nginx':
   ensure  => running,
-  enable => true,
+  enable  => true,
   require => Package['nginx'],
 }
 
