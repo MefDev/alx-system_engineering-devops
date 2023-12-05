@@ -1,50 +1,15 @@
 # Using Puppet, configure two servers 
 exec {'apt-update':
   command => '/usr/bin/apt-get update',
-  path    => '/usr/bin:/usr/sbin:/bin',
-
 }
-
-package { 'nginx':
+-> package { 'nginx':
   ensure   => installed,
-  provider => ['apt'],
-  require  => Exec['apt-update'],
 }
-
-service { 'nginx':
-  ensure    => running,
-  enable    => true,
-  subscribe => File['default'],
-  require   => Package['nginx'],
+-> file_line { 'add-header':
+  path   => '/etc/nginx/sites-available/default',
+  after  => 'server_name _',
+  line   => "add_header X-Served-By ${hostname}",
 }
-
-file { 'index.html':
-  ensure  => file,
-  path    => '/var/www/html/index.html',
-  content => 'Hello World!',
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  mode    => '0644',
-}
-file {'default':
-  ensure  => file,
-  path    => '/etc/nginx/sites-available/default',
-  content => "server {
-    listen 80 default_server;
-    listen [::]:80 default_server;
-
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-    add_header X-Served-By ${hostname};
-    location /redirect_me {
-      return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-      }
-  }",
-  owner   => 'ubuntu',
-  group   => 'ubuntu',
-  mode    => '0644',
-  require => Package['nginx'],
-  notify  => Service['nginx'],
+-> exec { 'restart-service':
+  command  => '/usr/sbin/service nginx restart',
 }
