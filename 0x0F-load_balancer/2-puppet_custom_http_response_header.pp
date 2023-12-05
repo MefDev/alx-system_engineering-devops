@@ -1,4 +1,4 @@
-# Using Puppet, configure two servers
+# Using Puppet, configure two servers 
 exec {'apt-update':
   command => '/usr/bin/apt-get update',
   path    => '/usr/bin:/usr/sbin:/bin',
