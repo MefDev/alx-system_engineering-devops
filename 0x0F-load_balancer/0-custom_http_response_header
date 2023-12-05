@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Double the number of webservers
+sudo apt-get -y update
+sudo apt-get -y install nginx
+sudo echo "Hello World!" > /var/www/html/index.html
+sudo sed -i "30i location /redirect_me {\nreturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n}\n" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo service nginx restart
+
