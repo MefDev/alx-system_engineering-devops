@@ -11,6 +11,7 @@ package { 'nginx':
 
 service { 'nginx':
   ensure  => running,
+  enable => true,
   require => Package['nginx'],
 }
 
@@ -30,13 +31,12 @@ file {'default':
     listen [::]:80 default_server;
 
     root /var/www/html;
-    index.html index.htm index;
+    index index.html index.htm index.nginx-debian.html;
 
     server_name _;
 
     location / {
       add_header x-served-by ${hostname};
-      try_files ${uri} ${uri}/ =404;
     }
     location /redirect_me {
       return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
