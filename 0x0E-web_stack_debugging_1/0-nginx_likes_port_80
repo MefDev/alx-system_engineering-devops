@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# debug a web server on a docker container
+# debug a web server on a docker container 
 sudo apt-get update
 sudo apt-get install nginx
 sudo service nginx restart
