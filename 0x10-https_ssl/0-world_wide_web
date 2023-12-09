@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Display information about subdomains
+
+domain=$1
+subdomain=$2
+www="www.${domain}"
+lb01="lb-01.${domain}"
+web01="web-01.${domain}"
+web02="web-02.${domain}"
+
+
+print_general_info(){
+            print_info_about_domain $www
+            print_info_about_domain $lb01
+            print_info_about_domain $web01
+            print_info_about_domain $web02    
+}
+print_specific_subdomain_info(){
+    print_info_about_domain "$subdomain.$domain"
+}
+print_info_about_domain()
+{
+    subdom=$(dig $1 | grep -A1 'ANSWER SECTION:' | awk '{print $1}' | awk -F '.' ' {print $1}' | tail -1)
+    record=$(dig $1 | grep -A1 'ANSWER SECTION:' | awk '{print $4}' | tail -1)
+    ip=$(dig $1 | grep -A1 'ANSWER SECTION:' | awk '{print $5}' | tail -1)
+    echo "The subdomain ${subdom} is a ${record} record and points to ${ip}"
+}
+
+
+if [ $# -eq 0 ]
+    then
+        echo "usage [file name] domain subdomain"
+fi
+
+if [ $# -eq 1 ]
+    then
+        print_general_info
+fi
+
+if [ $# -eq 2 ]
+    then 
+        print_specific_subdomain_info
+fi
