@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+# Block all incoming traffic but allow http, https and ssh
+
+sudo get-apt update
+sudo get-apt install ufw
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow ssh
+sudo ufw enable
