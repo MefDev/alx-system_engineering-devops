@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# mysql confuration primary
+printf %s "
+    #bind-address            = 54.237.23.212
+    server_id                = 1
+    log_bin                  = /var/log/mysql/mysql-bin.log
+    Binlog_Do_DB             = tyrell_corp
+    " >> /etc/mysql/mysql.conf.d/mysqld.cnf
+
+sudo service mysql restart
