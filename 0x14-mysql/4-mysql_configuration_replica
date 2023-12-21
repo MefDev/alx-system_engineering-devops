@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# mysql confuration replica
+printf %s "
+    #bind-address            = 54.237.23.212
+    server_id                = 2
+    log_bin                  = /var/log/mysql/mysql-bin.log
+    Binlog_Do_DB             = tyrell_corp
+    relay_log                = /var/log/mysql/mysql-relay-bin.log
+    " >> /etc/mysql/mysql.conf.d/mysqld.cnf
+mysql -uroot -p | CHANGE MASTER TO MASTER_HOST='54.237.23.212', MASTER_USER='replica_user', MASTER_PASSWORD='ReplicaUser1', MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=154; START SLAVE; 
+sudo service mysql restart
