@@ -1,20 +1,5 @@
 #!/usr/bin/env bash
 # run nginx as nginx user
-sudo useradd -r -s /sbin/nologin nginx
 sudo sed -i 's/^\(\s*user\s*\).*$/\1nginx;/' /etc/nginx/nginx.conf
-echo '
-server {
-    listen 8080 default_server;
-    listen [::]:8080 default_server;
-
-    root /var/www/html;
-    index index.html index.htm index.nginx-debian.html;
-
-    server_name _;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
-}
-' > /etc/nginx/sites-available/default
-service nginx restart
+sudo sed -i 's/^\(\s*listen\s*\).*$/\1 8080;/' /etc/nginx/sites-available/default
+sudo -u nginx service nginx start
