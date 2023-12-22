@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Display another user's name
+USER=$1
+sudo -u "$USER" whoami
