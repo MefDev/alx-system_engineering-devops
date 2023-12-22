@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # run nginx as nginx user
-chown -R nginx:nginx /etc/nginx/nginx.conf
 sed -i 's/^\(\s*user\s*\).*$/\1nginx;/' /etc/nginx/nginx.conf
-chown -R  /etc/nginx/sites-available/default
 sed -i 's/^\(\s*listen\s*\).*$/\18080;/' /etc/nginx/sites-available/default
 -u nginx service nginx restart   
