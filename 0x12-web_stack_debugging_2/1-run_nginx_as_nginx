@@ -2,4 +2,5 @@
 # run nginx as nginx user
 sed -i 's/^\(\s*user\s*\).*$/\1nginx;/' /etc/nginx/nginx.conf
 sed -i 's/^\(\s*listen\s*\).*$/\18080;/' /etc/nginx/sites-available/default
--u nginx service nginx restart   
+sed -i 's/^\(\s*listen\s*\).*$/\18080;/' /etc/nginx/sites-enabled/default
+service nginx restart
