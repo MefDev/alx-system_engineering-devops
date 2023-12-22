@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# setup a backup plan for MySQL database
+password=$1
+mysqldump -u root -p"$password" tyrell_corp > backup.sql
+sudo tar -czvf "$(date +'%d-%m-%Y').tar.gz" backup.sql
+sudo rm backup.sql
