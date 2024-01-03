@@ -1,6 +1,10 @@
 #!/usr/bin/python3
-"""Python script that, using this REST API, for a given employee ID, returns
-information about his/her TODO list progress."""
+"""
+    Python script that, using this REST API,
+    for a given employee ID, returns
+    information about his/her TODO list progress.
+"""
+
 if __name__ == "__main__":
     import requests
     import sys
@@ -25,10 +29,8 @@ if __name__ == "__main__":
         for key, value in current_user.items():
             if key == 'name':
                 current_infos['employee_name'] = value
-
-
-print("Employee {} is done with tasks({}/{}):".format(
-    current_infos.get('employee_name'),
-      current_infos.get('done_tasks'), len(user_todos)))
-for title in current_infos.get('title'):
-    print("\t {}".format(title))
+    print("Employee {} is done with tasks({}/{}):".format(
+        current_infos.get('employee_name'),
+        current_infos.get('done_tasks'), len(user_todos)))
+    for title in current_infos.get('title'):
+        print("\t {}".format(title))
