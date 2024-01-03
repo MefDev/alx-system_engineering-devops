@@ -29,7 +29,7 @@ if __name__ == "__main__":
             current_infos['username'].append(current_user.get('username'))
             current_infos['completed'].append(todo.get('completed'))
             current_infos['title'].append(todo.get('title'))
-    with open('USER_ID.csv', 'w') as csvfile:
+    with open('{}.csv'.format(id), 'w') as csvfile:
         fieldnames = ["userId", "username", "completed", "title"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames,
                                 quoting=csv.QUOTE_ALL)
