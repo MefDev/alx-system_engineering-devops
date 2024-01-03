@@ -25,7 +25,7 @@ if __name__ == "__main__":
                 current_infos['title'] = []
             else:
                 current_infos['done_tasks'] += 1
-                current_infos['title'].append(todo.get('title'))
+            current_infos['title'].append(todo.get('title'))
         for key, value in current_user.items():
             if key == 'name':
                 current_infos['employee_name'] = value
