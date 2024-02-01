@@ -9,7 +9,7 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
 
     try:
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, allow_redirects=False)
         data = response.json()
         return data.get('data', {}).get('subscribers', 0)
     except requests.exceptions.RequestException as e:
