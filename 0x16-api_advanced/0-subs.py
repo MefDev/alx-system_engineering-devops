@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module for task 0"""
+"""Get the number of subscribers for a particular subreddit"""
 import requests
 
 
@@ -9,7 +9,8 @@ def number_of_subscribers(subreddit):
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
 
     try:
-        response = requests.get(url, headers=headers, allow_redirects=False)
-        return response.json().get('data', {}).get('subscribers', 0)
+        response = requests.get(url, headers=headers)
+        data = response.json()
+        return data.get('data', {}).get('subscribers', 0)
     except requests.exceptions.RequestException as e:
         return 0
