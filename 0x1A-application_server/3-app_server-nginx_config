@@ -1,0 +1,44 @@
+# Default server configuration
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                root /var/www/html;
+                internal;
+                
+
+        }
+         location /redirect_me {
+                return 301 https://github.com/ElGaharbiAyoub;
+        }
+        location /hbnb_static/ {
+                alias /data/web_static/current/;
+        }
+       
+        location /airbnb-onepage/ {
+                proxy_pass http://localhost:5000/airbnb-onepage/;
+                proxy_redirect off;
+        }
+        
+         location /airbnb-dynamic/number_odd_or_even/ {
+                proxy_pass http://localhost:5001/number_odd_or_even/;
+                proxy_redirect off;
+        }
+ 
+
+        root /var/www/html;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.htm index.nginx-debian.html;
+        
+        server_name _;
+        add_header X-Served-By 395564-web-01;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
