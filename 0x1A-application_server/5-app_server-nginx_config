@@ -1,0 +1,54 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                root /var/www/html;
+                internal;
+                
+
+        }
+         location /redirect_me {
+                return 301 https://github.com/ElGaharbiAyoub;
+        }
+        location /hbnb_static/ {
+                alias /data/web_static/current/;
+        }
+        # serve /airbnb-onepage/ route on AirBnB_clone_v2
+        location /airbnb-onepage/ {
+                proxy_pass http://localhost:5000/airbnb-onepage/;
+                proxy_redirect off;
+        }
+        
+         location /airbnb-dynamic/number_odd_or_even/ {
+                proxy_pass http://localhost:5001/number_odd_or_even/;
+                proxy_redirect off;
+        }
+
+        # serve /api/ route on AirBnB_clone_v3
+        location /api/ {
+                proxy_pass http://localhost:5002/api/;
+                proxy_redirect off;
+        }
+        # config /2-hbnb route on AirBnB_clone_v4
+        location / {
+                proxy_pass http://localhost:5003/2-hbnb;
+                try_files $uri $uri/ =404;
+        }
+
+        # serve /static/ route on AirBnB_clone_v4
+        location /static/ {
+                alias web_dynamic/static/;
+        }
+ 
+
+        root /var/www/html;
+
+        
+        index index.html index.htm index.nginx-debian.html;
+        
+        server_name _;
+        add_header X-Served-By 395564-web-01;
+
+}
