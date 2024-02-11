@@ -1,0 +1,35 @@
+# Default server configuration
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+
+        error_page 404 /custom_404.html;
+        location = /custom_404.html {
+                root /var/www/html;
+                internal;
+
+        }
+         location /redirect_me {
+                return 301 https://github.com/ElGaharbiAyoub;
+        }
+        location /hbnb_static/ {
+                alias /data/web_static/current/;
+        }
+        # serve /airbnb-onepage/ route on AirBnB_clone_v2
+        location /airbnb-onepage/ {
+                proxy_pass http://localhost:5000/airbnb-onepage/;
+                proxy_redirect off;
+        }
+        
+         location /airbnb-dynamic/number_odd_or_even/ {
+                proxy_pass http://localhost:5001/number_odd_or_even/;
+                proxy_redirect off;
+        }
+
+        # serve /api/ route on AirBnB_clone_v3
+        location /api/ {
+                proxy_pass http://localhost:5002/api/;
+                proxy_redirect off;
+        }   
+}
