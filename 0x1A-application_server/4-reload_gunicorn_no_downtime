@@ -1,3 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 # No service interruption
-pgrep gunicorn | xargs -I kill {} -HUP {}
+
+ps aux| grep gunicorn | awk '{ print $2}' | xargs kill -HUP
